@@ -28,6 +28,8 @@ function alternate(s) {
         }
     }
 
+    // abcd  ==> ab 
+
     for (let i = 0; i < uniqueChars.length; i++) {
         let ch = uniqueChars[i];
         for (let x = i + 1; x < uniqueChars.length; x++) {
@@ -40,10 +42,15 @@ function alternate(s) {
         let comb = combinations[i];
         let firstLetter = comb[0];
         let secondLetter = comb[1];
-
-        let newWord = s.replaceAll(firstLetter, '');
-        newWord = newWord.replaceAll(secondLetter, '');
-
+        let newWord = s;
+        for (let ch of s) {
+            if (ch === firstLetter || ch === secondLetter) {
+                continue;
+            }
+            else {
+                newWord = newWord.replaceAll(ch,'');
+            }
+        }
         wordsFromCombinations.push(newWord);
     }
 
@@ -74,7 +81,11 @@ function alternate(s) {
     }
 
     //let finalResult = correctWords.filter(x=> x.length == Math.max(x.length));
-    //console.log(result);
+    console.log(uniqueChars);
+    console.log(combinations);
+    console.log(wordsFromCombinations);
+    console.log(correctWords);
+    console.log(result);
     return result;
 
 
@@ -85,4 +96,4 @@ function alternate(s) {
 
 }
 
-alternate('beabeefeab');
+alternate('asdcbsdcagfsdbgdfanfghbsfdab');
